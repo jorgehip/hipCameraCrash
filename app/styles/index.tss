@@ -12,4 +12,17 @@
 	font: {
 		fontSize: 12
 	}
+},
+"#tableView":{
+	top: 0,
+	bottom:50,
+	backgroundColor:'#fff'
+},
+".row": {
+	bottom:0,
+	height:50,
+	left:0,
+	right:0,
+	backgroundColor: '#0067ac',
+	layout: "horizontal" 
 }
