@@ -1,3 +1,8 @@
+
+function saveVideo () {
+    Alloy.Globals.saveVideo();
+    
+}
 /**
  * showCamera: handle required permissions and display camera for video capture
  *             and photo capture
@@ -8,7 +13,8 @@
  *     @param result: result from the camera containing captured media information
  */
 function showCamera (type, callback) {
-    var camera = function () {
+    
+    function camera() {
         // call Titanium.Media.showCamera and respond callbacks
         Ti.Media.showCamera({
             success: function (e) {
@@ -72,5 +78,54 @@ function takeVideo(){
         
     });
 }; 
+
+function showCameras(type, callback) {
+    //function camera() {
+        // call Titanium.Media.showCamera and respond callbacks
+        Ti.Media.showCamera({
+            success: function (e) {
+                callback(null, e);
+            },
+            cancel: function (e) {
+                callback(e, null);
+            },
+            error: function (e) {
+                callback(e, null);
+            },
+            mediaTypes : [Titanium.Media.MEDIA_TYPE_VIDEO],
+            videoMaximumDuration : 30000,
+            videoQuality : Titanium.Media.QUALITY_LOW
+            
+        });
+   // };
+}
+
+function takeVideos() {
+    require("/permissions").checkCameraPermission(function() {
+        showCameras(Ti.Media.MEDIA_TYPE_VIDEO, function(error, result) {
+            if (error) {
+                alert('could not capture video');
+                return;
+            }
+
+            // validate we taken a video
+            if (result.mediaType == Ti.Media.MEDIA_TYPE_VIDEO) {
+
+                // create a videoPlayer to display our video
+                var videoPlayer = Ti.Media.createVideoPlayer({
+                    url : result.media.nativePath,
+                    //media : e.media,
+                    scalingMode : Titanium.Media.VIDEO_SCALING_ASPECT_FIT,
+                    autoplay : true
+                });
+
+                // add the videoPlayer to the window
+                $.win.add(videoPlayer);
+            }
+
+        });
+
+    });
+}
 
 $.win.open();

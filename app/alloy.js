@@ -22,3 +22,6 @@
 
 })();
 
+Alloy.Globals.saveVideo = function (){
+    
+};

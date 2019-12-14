@@ -1,0 +1,7 @@
+testCameraCrash/Resources
+testCameraCrash/.com.apple.timemachine.supported
+testCameraCrash/app/platform/ios/alloy_generated
+testCameraCrash/i18n/alloy_generated
+testCameraCrash/platform/android/alloy_generated
+testCameraCrash/platform/ios/alloy_generated
+testCameraCrash/plugins/ti.alloy/hooks/deepclean.js
