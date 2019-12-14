@@ -59,14 +59,9 @@ Alloy.Globals.saveVideo = function (callback){
                         return;
                     }
                     callback(e);
-                
-                    var window = Titanium.UI.createWindow();
-                    //window.add(imageView);
-                    window.open();
-                    // add the videoPlayer to the window
-                    //$.win.add(videoPlayer);
+                    
                 }
-                //videoPlayer.requestThumbnailImagesAtTimes([0], Titanium.Media.VIDEO_TIME_OPTION_NEAREST_KEYFRAME, setBackgroundImage);
+                videoPlayer.requestThumbnailImagesAtTimes([0], Titanium.Media.VIDEO_TIME_OPTION_NEAREST_KEYFRAME, setBackgroundImage);
                 
             },
             cancel: function (e) {
