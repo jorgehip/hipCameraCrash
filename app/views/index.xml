@@ -1,0 +1,7 @@
+<Alloy>
+	<Window id='win' class="container" layout="vertical">
+	    <Label text="Sample to verify the correct camera recording" top='100'></Label>
+		<Button id='photo' title='Take Photo' top='30'/>
+		<Button id='video' title='Take Video' onClick="takeVideo" top='20'/>
+	</Window>
+</Alloy>
