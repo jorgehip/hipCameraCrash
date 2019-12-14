@@ -119,8 +119,22 @@ function takeVideos() {
                     autoplay : true
                 });
 
+                function setBackgroundImage(thumbResponse, error) {
+                    //console.log('--> setBackgroundImage() - thumbResponse: ', thumbResponse, ', error: ', error);
+                    if (error) {
+                        alert('could not capture video');
+                        return;
+                    }
+                    //callback(e);
+                
+                    
+                    $.win.add(videoPlayer);
+                }
+                videoPlayer.requestThumbnailImagesAtTimes([0], Titanium.Media.VIDEO_TIME_OPTION_NEAREST_KEYFRAME, setBackgroundImage);
+                
+
                 // add the videoPlayer to the window
-                $.win.add(videoPlayer);
+                //$.win.add(videoPlayer);
             }
 
         });
