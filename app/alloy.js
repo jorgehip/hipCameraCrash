@@ -30,6 +30,14 @@ if (Ti.Filesystem.isExternalStoragePresent()) {
         Alloy.Globals.inspectionDir = Ti.Filesystem.applicationDataDirectory;
     }
 }
+
+var root = {};
+root.template = [];
+root.pictures = [];
+root.videos = [];
+Alloy.Globals.root = root;
+
+
 (function() {
 
 })();
@@ -100,6 +108,8 @@ Alloy.Globals.saveVideo = function(callback) {
                                 video : tempFile.getName(),
                                 isVideo : true
                             };
+                            
+                            Alloy.Globals.root.pictures.push(videoFile); 
 
                             callback(videoFile);
                             window.close();

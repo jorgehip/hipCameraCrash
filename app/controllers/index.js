@@ -36,19 +36,54 @@ function createTableRowForVideos(video_info, videoId) {
 function updateTableView(vid){
     console.log('~~> updateTableView()');
     
- 
+//  
+    // var data = [];
+    // imageSection = Titanium.UI.createTableViewSection({
+        // headerTitle : "Media"
+    // });
+//     
+    // var row = createTableRowForVideos(vid, 0);
+    // imageSection.add(row);
+//     
+    // console.log( "imageSection.rowCount: ", imageSection.rowCount);
+    // if (imageSection.rowCount > 0)
+        // data.push(imageSection);
+// 
+    // $.tableView.setData(data);
+    
     var data = [];
     imageSection = Titanium.UI.createTableViewSection({
         headerTitle : "Media"
     });
     
-    var row = createTableRowForVideos(vid, 0);
-    imageSection.add(row);
-    
-    console.log( "imageSection.rowCount: ", imageSection.rowCount);
+    if (Alloy.Globals.root.pictures.length > 0) {
+        for (i in Alloy.Globals.root.pictures) {
+            
+            var picture = Alloy.Globals.root.pictures[i];
+                /*
+                 doLog && console.log(LOG_TAG, "picture.menuItem:",picture.menuItem);
+                 doLog && console.log(LOG_TAG, "menuItem.title:",menuItem.title);
+                 doLog && console.log(LOG_TAG, "picture.section:",menuItem.title);
+                 doLog && console.log(LOG_TAG, "damagePanelIndex.title:", ((menuItem.tabbed_panels[panelId]).damage_panels[damagePanelIndex]).title);
+                 */
+            
+
+            if (picture.isVideo) {
+                var row = createTableRowForVideos(picture, i);
+                imageSection.add(row);
+            } else {
+                var row = createTableRowForImages(picture, i);
+                imageSection.add(row);
+            }
+            
+        }
+    }
+    //doLog && console.log(LOG_TAG, "imageSection.rowCount: ", imageSection.rowCount);
     if (imageSection.rowCount > 0)
         data.push(imageSection);
 
+    //doLog && console.log(LOG_TAG, "imageSection.rowCount data: ", data);
+    //doLog && console.log(LOG_TAG, "imageSection.rowCount data: ", JSON.stringify(data));
     $.tableView.setData(data);
     
 }
